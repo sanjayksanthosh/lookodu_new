@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "200474843670",
+    "project_id": "testapp-9bb40",
+    "storage_bucket": "testapp-9bb40.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:200474843670:android:1d3197a76bbd24fb923337",
+        "android_client_info": {
+          "package_name": "com.example.lookodu"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD1Z7kYeCAtibfMdRJAQMT0qAv4-CV_sik"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:200474843670:android:c420d876de96f11d923337",
+        "android_client_info": {
+          "package_name": "com.random.com"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD1Z7kYeCAtibfMdRJAQMT0qAv4-CV_sik"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
