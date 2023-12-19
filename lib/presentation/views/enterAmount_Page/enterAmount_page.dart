@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lookodu/presentation/views/ProceedToPay_page/proceedToPay_page.dart';
 import 'package:lookodu/presentation/views/enterAmount_Page/widgets/amount_Textfield.dart';
 import 'package:lookodu/presentation/views/enterAmount_Page/widgets/paymentMethod_container.dart';
 
@@ -46,7 +47,7 @@ class EnterAmountPage extends StatelessWidget {
           ),
           TextButton(
             onPressed: () {
-              // Handle button press
+              Navigator.push(context, MaterialPageRoute(builder: (context) => ProceedToPayPage(),));
             },
             style: TextButton.styleFrom(
               backgroundColor: Colors.white, // Background color
