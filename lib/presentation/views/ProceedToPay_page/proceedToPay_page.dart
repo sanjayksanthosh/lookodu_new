@@ -6,6 +6,20 @@ class ProceedToPayPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    void _showBottomSheet(BuildContext context) {
+      showModalBottomSheet(
+        context: context,
+        builder: (BuildContext builderContext) {
+          return Container(
+            height: 200.0,
+            color: Colors.white,
+            child: Column(children: [
+              Row(children: [Text('Original Amount',style: TextStyle(color: Colors.black),)],)
+            ],)
+          );
+        },
+      );
+    }
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
@@ -31,6 +45,7 @@ class ProceedToPayPage extends StatelessWidget {
             child: ElevatedButton(
               onPressed: () {
                 debugPrint('ElevatedButton Clicked');
+                _showBottomSheet(context);
               },
               child: Text('\u{20B9}750',style: TextStyle(color: Colors.white)),
               style: ElevatedButton.styleFrom(
