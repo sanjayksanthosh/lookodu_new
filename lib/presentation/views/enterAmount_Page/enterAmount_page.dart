@@ -1,14 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:lookodu/presentation/views/ProceedToPay_page/proceedToPay_page.dart';
 import 'package:lookodu/presentation/views/enterAmount_Page/widgets/amount_Textfield.dart';
 import 'package:lookodu/presentation/views/enterAmount_Page/widgets/paymentMethod_container.dart';
 
-import '../../../utils/contants/app_colors.dart';
 import '../../../utils/screen_uils.dart';
+import 'package:get/get.dart';
 
-class EnterAmountPage extends StatelessWidget {
+import '../ProceedToPay_page/proceedToPay_page.dart';
+import 'controllers/enterAmount_controller.dart';
+
+
+class EnterAmountPage extends GetView<EnterAmountController> {
   EnterAmountPage({Key? key}) : super(key: key);
-  TextEditingController amountController = TextEditingController();
+  final EnterAmountController amountController = Get.put(EnterAmountController());
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -38,16 +41,24 @@ class EnterAmountPage extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text("Enter Amount"),
-                  AmountTextField(),
+                  AmountTextField(controller: amountController.amountTextController),
                   Text("Select Payment Method"),
+              // controller.obx(
+              //       (state) =>Text(state!.length.toString())
+              // ),
                   PaymentMethodContainer(),
+
+
                 ],
               ),
+
+
             ),
           ),
           TextButton(
             onPressed: () {
-              Navigator.push(context, MaterialPageRoute(builder: (context) => ProceedToPayPage(),));
+              amountController.InitialOrderCreation().then((_) => Get.to(()=>ProceedToPayPage()));
+
             },
             style: TextButton.styleFrom(
               backgroundColor: Colors.white, // Background color
@@ -62,6 +73,7 @@ class EnterAmountPage extends StatelessWidget {
             child: Text(
               'Continue',
               style: TextStyle(color: Colors.black), // Text color
+
             ),
           )
         ]),

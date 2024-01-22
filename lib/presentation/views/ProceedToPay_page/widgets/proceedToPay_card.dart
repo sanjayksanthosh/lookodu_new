@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:lookodu/utils/screen_uils.dart';
+
+import '../../../../utils/screen_uils.dart';
 
 class ProceedToPayCard extends StatelessWidget {
   const ProceedToPayCard({Key? key}) : super(key: key);
@@ -10,7 +11,7 @@ class ProceedToPayCard extends StatelessWidget {
     return Stack(children: [
       Container(
         margin: EdgeInsets.all(40),
-        height: ResponsiveUtil.responsiveHeight(context, 40),
+        height: ResponsiveUtil.responsiveHeight(context, 35),
         width: ResponsiveUtil.responsiveWidth(context, 90),
         decoration: BoxDecoration(
             borderRadius: BorderRadius.all(Radius.circular(20)),

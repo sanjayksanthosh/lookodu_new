@@ -1,25 +1,32 @@
 import 'package:flutter/material.dart';
 import 'package:lookodu/presentation/views/ProceedToPay_page/widgets/proceedToPay_card.dart';
+import 'package:get/get.dart';
+import 'package:lookodu/presentation/views/ProceedToPay_page/widgets/proceedToPay_sheet.dart';
 
-class ProceedToPayPage extends StatelessWidget {
-  const ProceedToPayPage({Key? key}) : super(key: key);
+import '../finish_Page/payment_finish_page.dart';
+import 'controllers/proceedToPay_controller.dart';
+
+class ProceedToPayPage extends GetView<ProceedToPayController> {
+   ProceedToPayPage({Key? key}) : super(key: key);
+  final ProceedToPayController controller = Get.put(ProceedToPayController());
+
 
   @override
   Widget build(BuildContext context) {
-    void _showBottomSheet(BuildContext context) {
-      showModalBottomSheet(
-        context: context,
-        builder: (BuildContext builderContext) {
-          return Container(
-            height: 200.0,
-            color: Colors.white,
-            child: Column(children: [
-              Row(children: [Text('Original Amount',style: TextStyle(color: Colors.black),)],)
-            ],)
-          );
-        },
-      );
-    }
+    // void _showBottomSheet(BuildContext context) {
+    //   showModalBottomSheet(
+    //     context: context,
+    //     builder: (BuildContext builderContext) {
+    //       return Container(
+    //         height: 200.0,
+    //         color: Colors.white,
+    //         child: Column(children: [
+    //           Row(children: [Text('Original Amount',style: TextStyle(color: Colors.black),)],)
+    //         ],)
+    //       );
+    //     },
+    //   );
+    // }
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
@@ -30,35 +37,38 @@ class ProceedToPayPage extends StatelessWidget {
         centerTitle: true,actions: [Text("Edit")],
       ),
 
-      body: Padding(
-        padding: const EdgeInsets.all(10.0),
-        child: Column(children: [
-          Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Column(crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text('DOSA EXPRESS'),
-                  Text('Poovangal, Calicut'),
-                ],
+      body:
+    Column(mainAxisAlignment: MainAxisAlignment.spaceBetween,children: [
+          Padding(
+            padding: const EdgeInsets.all(20.0),
+            child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Column(crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text('DOSA EXPRESS'),
+                    Text('Poovangal, Calicut'),
+                  ],
+                ),
+            Container(width: 150,height: 50,
+              child: ElevatedButton(
+                onPressed: () {
+                  debugPrint('ElevatedButton Clicked');
+                  // Get.to(PaymentFinishPage());
+                  // _showBottomSheet(context);
+                },
+                child: Text('\u{20B9}750',style: TextStyle(color: Colors.white)),
+                style: ElevatedButton.styleFrom(
+                  shape: StadiumBorder(),
+                  side: BorderSide(color: Colors.white, width: 1),
+                ),
               ),
-          Container(width: 150,height: 50,
-            child: ElevatedButton(
-              onPressed: () {
-                debugPrint('ElevatedButton Clicked');
-                _showBottomSheet(context);
-              },
-              child: Text('\u{20B9}750',style: TextStyle(color: Colors.white)),
-              style: ElevatedButton.styleFrom(
-                shape: StadiumBorder(),
-                side: BorderSide(color: Colors.white, width: 1),
-              ),
+            )
+              ],
             ),
-          )
-            ],
           ),
-          ProceedToPayCard()
+          ProceedToPayCard(),
+          ProceedToPayBottomSheet(),
         ]),
-      ),
     );
   }
 }

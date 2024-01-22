@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:lookodu/presentation/views/enterAmount_Page/controllers/enterAmount_controller.dart';
 import 'package:lookodu/presentation/views/enterAmount_Page/enterAmount_page.dart';
-
+import 'package:get/get.dart';
 void main() {
   runApp(const MyApp());
 }
@@ -11,7 +12,8 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(debugShowCheckedModeBanner: false,
+    Get.put(EnterAmountController());
+    return GetMaterialApp(debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(
         textTheme: TextTheme(
@@ -31,6 +33,7 @@ textTheme: TextTheme(
 ),
       // Define dark theme colors and other properties here
     ),
+
       home:  EnterAmountPage(),
     );
   }

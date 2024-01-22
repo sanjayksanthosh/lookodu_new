@@ -2,15 +2,18 @@ import 'package:flutter/material.dart';
 
 import '../../../../utils/contants/app_colors.dart';
 import '../../../../utils/screen_uils.dart';
+import '../controllers/enterAmount_controller.dart';
 
 class AmountTextField extends StatelessWidget {
-  const AmountTextField({Key? key}) : super(key: key);
+  final TextEditingController controller;
+   AmountTextField({Key? key, required this.controller}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Stack(
       children: [
         TextField(
+          controller: controller,
           style: TextStyle(fontSize: 28),
           keyboardType: TextInputType.number,
           decoration: InputDecoration(
