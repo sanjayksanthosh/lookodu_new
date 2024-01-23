@@ -5,19 +5,20 @@ import 'package:get/get.dart';
 import '../../../../data/model/wallet_model.dart';
 import '../../../../data/network/api/payment_api.dart';
 import '../../../../data/network/services/api_exceptions.dart';
+import '../../ProceedToPay_page/proceedToPay_page.dart';
 
 class EnterAmountController extends GetxController with StateMixin<List<WalletModel>> {
   final UserApi _userApi = UserApi();
 
   RxList<WalletModel> wallet = <WalletModel>[].obs;
-
+RxString orderID = ''.obs;
+RxString enteredAmount = ''.obs;
   @override
   void onInit() {
     super.onInit();
     fetchWallets();
   }
   var amountTextController = TextEditingController();
-
 
   void fetchWallets() async {
     try {
@@ -47,25 +48,30 @@ class EnterAmountController extends GetxController with StateMixin<List<WalletMo
     }
   }
 
-  Future<void> InitialOrderCreation() async {
+  Future<void> InitialOrderCreation({String? clubID,String? upiID}) async {
     print(amountTextController.text);
     try {
       final response = await _userApi.InitialOrderCreation(data: {
 
-          "club": "62443b8fc91cc07bfb6082d9",
+          "club": clubID,
           "billAmount": int.parse(amountTextController.text),
           "notes": "Test Payment",
           "location": {
             "type": "Point",
             "coordinates": [12, 18]
-          }
-          // "isUPITxn": true,
-          // "upiId": "7012060319@freecharge",
-          // "wallet": "651bb90d5216b5c88610964e"
+          },
+          "isUPITxn": true,
+          "upiId": upiID,
+          "wallet": "651bb90d5216b5c88610964e"
 
       });
 
       if (response.statusCode == 200) {
+        String order = response.data['data']['initialOrder']['_id'];
+        orderID = order.obs;
+        print(">>>>>>>>>>>orderID");
+        print(orderID);
+        Get.to(()=>ProceedToPayPage());
 
  print('response');
       } else {

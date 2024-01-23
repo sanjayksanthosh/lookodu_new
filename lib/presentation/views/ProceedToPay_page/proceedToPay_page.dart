@@ -3,12 +3,14 @@ import 'package:lookodu/presentation/views/ProceedToPay_page/widgets/proceedToPa
 import 'package:get/get.dart';
 import 'package:lookodu/presentation/views/ProceedToPay_page/widgets/proceedToPay_sheet.dart';
 
+import '../enterAmount_Page/controllers/enterAmount_controller.dart';
 import '../finish_Page/payment_finish_page.dart';
 import 'controllers/proceedToPay_controller.dart';
 
 class ProceedToPayPage extends GetView<ProceedToPayController> {
    ProceedToPayPage({Key? key}) : super(key: key);
   final ProceedToPayController controller = Get.put(ProceedToPayController());
+   final EnterAmountController amountController = Get.put(EnterAmountController());
 
 
   @override
@@ -50,18 +52,20 @@ class ProceedToPayPage extends GetView<ProceedToPayController> {
                   ],
                 ),
             Container(width: 150,height: 50,
-              child: ElevatedButton(
-                onPressed: () {
-                  debugPrint('ElevatedButton Clicked');
-                  // Get.to(PaymentFinishPage());
-                  // _showBottomSheet(context);
-                },
-                child: Text('\u{20B9}750',style: TextStyle(color: Colors.white)),
-                style: ElevatedButton.styleFrom(
-                  shape: StadiumBorder(),
-                  side: BorderSide(color: Colors.white, width: 1),
-                ),
-              ),
+              child:
+               ElevatedButton(
+                  onPressed: () {
+                    debugPrint('ElevatedButton Clicked');
+                    // Get.to(PaymentFinishPage());
+                    // _showBottomSheet(context);
+                  },
+                  child: Text("\u{20B9}"+amountController.amountTextController.text,style: TextStyle(color: Colors.white)),
+                  style: ElevatedButton.styleFrom(
+                    shape: StadiumBorder(),
+                    side: BorderSide(color: Colors.white, width: 1),
+                  ),
+
+           ),
             )
               ],
             ),

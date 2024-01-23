@@ -2,12 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../../utils/screen_uils.dart';
+import '../../enterAmount_Page/controllers/enterAmount_controller.dart';
 import '../../finish_Page/payment_finish_page.dart';
 import '../controllers/proceedToPay_controller.dart';
 
 class ProceedToPayBottomSheet extends StatelessWidget {
    ProceedToPayBottomSheet({Key? key }) : super(key: key);
    final ProceedToPayController controller = Get.put(ProceedToPayController());
+   final EnterAmountController amountController = Get.put(EnterAmountController());
 
   @override
   Widget build(BuildContext context) {
@@ -22,14 +24,14 @@ class ProceedToPayBottomSheet extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text('Original Amount', style: TextStyle(color: Colors.black)),
-            Text('750.00', style: TextStyle(color: Colors.black)),
+            Text(amountController.amountTextController.text, style: TextStyle(color: Colors.black)),
           ],
         ),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text('ODU Discount', style: TextStyle(color: Colors.black)),
-            Text('`50.00', style: TextStyle(color: Colors.black)),
+            Text('00.00', style: TextStyle(color: Colors.black)),
           ],
         ),
         Row(
@@ -46,7 +48,7 @@ class ProceedToPayBottomSheet extends StatelessWidget {
             );
 
           },
-          child: Text('Pay 700',style: TextStyle(color: Colors.white),),
+          child: Text('Pay'+amountController.amountTextController.text,style: TextStyle(color: Colors.white),),
           style: ElevatedButton.styleFrom(
               backgroundColor: Colors.blue,
               padding: EdgeInsets.symmetric(horizontal: 120, vertical: 10),

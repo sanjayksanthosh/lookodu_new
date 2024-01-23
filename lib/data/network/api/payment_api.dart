@@ -5,11 +5,23 @@ import '../services/api_services.dart';
 
 class UserApi {
   final ApiService _apiService = ApiService();
-static String token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MzQ3ZWRiNzVjOTJjMDBkMDI0Yzg0MDUiLCJuYW1lIjoiVmlzaG51IiwicGhvbmUiOiI3MDEyMDYwMzE5IiwiZW1haWwiOiJrdC52aXNobnUxOUBnbWFpbC5jb20iLCJjb2lucyI6NDU5NiwicHJvZmlsZUltYWdlIjoiIiwiYWRtaW4iOnRydWUsImlzUmV0YWlsVG9rZW4iOmZhbHNlLCJpc0NvcnBvcmF0ZVN0YWZmIjp0cnVlLCJjb3Jwb3JhdGUiOiI2NGZmZmFhOTUzNDExMmRkNjExNjY1YWMiLCJjb3Jwb3JhdGVSb2xlIjoiYWRtaW4iLCJpYXQiOjE3MDU3NDQ0NzEsImV4cCI6MTcwNTgzMDg3MX0.DqppXN8stECK3rXyAoFZsjIJ7DlqHNcYcRPyf7t9CYw';
+static String token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MzQ3ZWRiNzVjOTJjMDBkMDI0Yzg0MDUiLCJuYW1lIjoiVmlzaG51IiwicGhvbmUiOiI3MDEyMDYwMzE5IiwiZW1haWwiOiJrdC52aXNobnUxOUBnbWFpbC5jb20iLCJjb2lucyI6NDU5NiwicHJvZmlsZUltYWdlIjoiIiwiYWRtaW4iOnRydWUsImlzUmV0YWlsVG9rZW4iOmZhbHNlLCJpc0NvcnBvcmF0ZVN0YWZmIjp0cnVlLCJjb3Jwb3JhdGUiOiI2NGZmZmFhOTUzNDExMmRkNjExNjY1YWMiLCJjb3Jwb3JhdGVSb2xlIjoiYWRtaW4iLCJpYXQiOjE3MDU5MTczMjIsImV4cCI6MTcwNjAwMzcyMn0.M6ZE_mOar9Bw38UO_0VXsxDARUN-T8DAY6feKB2wWkk';
 
 Future<Response> getWallets() async {
     try {
       final Response response = await _apiService.get(AppUrl.wallets,
+          authToken:
+           token);
+      print(response);
+
+      return response;
+    } catch (e) {
+      rethrow;
+    }
+  }
+Future<Response> getPaymentDetails() async {
+    try {
+      final Response response = await _apiService.get(AppUrl.InitiateOrderView,
           authToken:
            token);
       print(response);

@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 
 import '../../../../utils/screen_uils.dart';
+import '../../enterAmount_Page/controllers/enterAmount_controller.dart';
 
 class ProceedToPayCard extends StatelessWidget {
   const ProceedToPayCard({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final EnterAmountController amountController = Get.put(EnterAmountController());
 
     return Stack(children: [
       Container(
@@ -34,13 +38,18 @@ class ProceedToPayCard extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text("Pay   \u{20B9}750",
-                    style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold)),
+                Stack(
+                  children: [
+                    Text("Pay   \u{20B9}"+amountController.amountTextController.text,
+                        style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold)),
+                  Positioned(bottom: 15,right:0,child: Container(height: 2,width: 50,color: Colors.black87,))
+                  ],
+                ),
                 SizedBox(width: 20),
-                Text('\u{20B9}700',
+                Text('\u{20B9}'+amountController.amountTextController.text,
                     style: TextStyle(
                         color: Colors.black,
                         fontSize: 35,

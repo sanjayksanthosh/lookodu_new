@@ -13,5 +13,6 @@ class AppUrl {
   static const String wallets = '/payments/customer/wallets/';
   static const String InitiateOrder = '/payments/orders/initiate/';
   static const String OrderCreation = '/payments/orders/v2/';
+  static const String InitiateOrderView = '/payments/orders/initiate/65af564dbeeaf771bda706d9/v2/';
 
 }

@@ -4,9 +4,11 @@ import 'package:get/get.dart';
 
 import '../../../../data/network/api/payment_api.dart';
 import '../../../../data/network/services/api_exceptions.dart';
+import '../../enterAmount_Page/controllers/enterAmount_controller.dart';
 
 class ProceedToPayController extends GetxController with StateMixin {
   final UserApi _userApi = UserApi();
+  final EnterAmountController amountController = Get.put(EnterAmountController());
 
   @override
   void onInit() {
@@ -16,13 +18,15 @@ class ProceedToPayController extends GetxController with StateMixin {
 
 
   Future<void> orderCreation() async {
+    print(amountController.orderID.value);
+    print("amountController.orderID.value");
     try {
       final response = await _userApi.orderCreation(data: {
-        "initialOrder": "65ab9a9ae0073954d4d9bc78",
+        "initialOrder": amountController.orderID.value,
         // "rewardType": "cashBack",
         // "cashBack": 3,
         // "reward": "645b7a0564a1119eb8eeada9",
-        "payableAmount": 29,
+        "payableAmount": amountController.amountTextController.text,
         "location": {
           "type": "Point",
           "coordinates": [12.78637637821683712873, 18.7283617236871236871637812637872183]
